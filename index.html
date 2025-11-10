@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="auto">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,13 +17,12 @@
 
   <body>
     <div class="page-wrapper">
-      <!------- Header / Branding ------->
       <header class="site-header">
         <img src="img/loreal-logo.png" alt="L'Oréal Logo" class="logo" />
         <h1 class="site-title">Smart Routine &amp; Product Advisor</h1>
+        <button id="rtlToggleBtn" class="rtl-toggle">Toggle RTL</button>
       </header>
 
-      <!-- Category Filter -->
       <div class="search-section">
         <select id="categoryFilter">
           <option value="" disabled selected>Choose a Category</option>
@@ -37,12 +36,16 @@
           <option value="suncare">Suncare</option>
           <option value="fragrance">Fragrance</option>
         </select>
+        <input
+          type="search"
+          id="productSearch"
+          placeholder="Search by name or keyword..."
+          autocomplete="off"
+        />
       </div>
 
-      <!-- Products Grid -->
       <div id="productsContainer" class="products-grid"></div>
 
-      <!-- Selected Products -->
       <div class="selected-products">
         <h2>Selected Products</h2>
         <div id="selectedProductsList"></div>
@@ -51,7 +54,6 @@
         </button>
       </div>
 
-      <!------- Chat Area ------->
       <section class="chatbox">
         <h2>Let's Build Your Routine</h2>
         <div id="chatWindow" class="chat-window"></div>
@@ -73,20 +75,15 @@
         </form>
       </section>
 
-      <!------- Footer Links ------->
       <footer class="site-footer">
         <p>&copy; 2025 L'Oréal. All rights reserved.</p>
         <nav>
-          <!-- These URLs are placeholders -->
           <a href="#">Privacy Policy</a>
           <a href="#">Terms of Use</a>
           <a href="#">Contact</a>
         </nav>
       </footer>
     </div>
-
-    <!-- secrets.js can be removed when using Cloudflare Workers for API requests -->
-    <script src="secrets.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

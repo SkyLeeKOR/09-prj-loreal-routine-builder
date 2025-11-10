@@ -1,3 +1,15 @@
+/* —— L'Oréal Brand Colors & Variables —— */
+:root {
+  --loreal-red: #ff003b;
+  --loreal-gold: #e3a535;
+  --text-dark: #333;
+  --text-light: #666;
+  --border-color: #ccc;
+  --border-dark: #000;
+  --bg-light: #fafafa;
+  --bg-white: #fff;
+}
+
 /* —— basic reset —— */
 * {
   box-sizing: border-box;
@@ -8,9 +20,10 @@
 /* —— body + fonts —— */
 body {
   font-family: "Montserrat", Arial, Helvetica, sans-serif;
-  color: #333;
+  color: var(--text-dark);
   display: flex;
   justify-content: center;
+  background-color: var(--bg-light); /* Light background for the page */
 }
 
 .page-wrapper {
@@ -23,6 +36,7 @@ body {
   text-align: center;
   padding-top: 50px;
   padding-bottom: 10px;
+  position: relative;
 }
 
 .logo {
@@ -34,36 +48,64 @@ body {
   font-size: 22px;
   font-weight: 500;
   margin-bottom: 10px;
+  color: var(--loreal-red); /* Brand color */
 }
 
-/* category filter */
+/* LevelUp: RTL Toggle Button Style */
+.rtl-toggle {
+  position: absolute;
+  top: 10px;
+  inset-inline-end: 10px; /* Replaces 'right' for RTL support */
+  padding: 6px 10px;
+  font-size: 12px;
+  background: #eee;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* category filter & search */
 .search-section {
   margin: 30px 0;
   display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
 }
 
 .search-section select {
-  width: 100%;
+  flex: 1 1 300px; /* Allow shrinking but prefer 300px */
   padding: 16px;
   font-size: 18px;
-  border: 2px solid #000;
+  border: 2px solid var(--border-dark);
   border-radius: 8px;
   cursor: pointer;
-  background-color: white;
+  background-color: var(--bg-white);
   font-weight: 500;
 }
 
+/* LevelUp: Product Search Input Style */
+#productSearch {
+  flex: 2 1 400px; /* Grow more than the select box */
+  padding: 16px;
+  font-size: 18px;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+}
+
+#productSearch:focus,
 .search-section select:focus {
   outline: none;
-  border-color: #666;
+  border-color: var(--loreal-red); /* Brand color focus */
+  box-shadow: 0 0 5px var(--loreal-red);
 }
 
 /* chat section */
 .chatbox {
   margin: 40px 0;
-  border: 2px solid #000;
+  border: 2px solid var(--border-dark);
   border-radius: 8px;
   padding: 26px;
+  background: var(--bg-white);
 }
 
 .chatbox h2 {
@@ -77,8 +119,12 @@ body {
   line-height: 1.5;
   height: 250px;
   overflow-y: auto;
-  background: #fafafa;
+  background: var(--bg-light);
   margin-bottom: 20px;
+  border-radius: 4px;
+  /* Make chat window a flex container to align messages */
+  display: flex;
+  flex-direction: column;
 }
 
 /* placeholder message */
@@ -86,7 +132,7 @@ body {
   width: 100%;
   text-align: center;
   padding: 40px;
-  color: #666;
+  color: var(--text-light);
   font-size: 18px;
 }
 
@@ -102,19 +148,19 @@ body {
   padding: 12px;
   font-size: 18px;
   border: none;
-  border-bottom: 2px solid #ccc;
+  border-bottom: 2px solid var(--border-color);
   background: transparent;
 }
 
 .chat-form input:focus {
   outline: none;
-  border-bottom-color: #000;
+  border-bottom-color: var(--loreal-red); /* Brand color */
 }
 
 .chat-form button {
   font-size: 18px;
-  background: #000;
-  color: #fff;
+  background: var(--loreal-red); /* Brand color */
+  color: var(--bg-white);
   border: none;
   padding: 12px;
   width: 48px;
@@ -124,14 +170,15 @@ body {
   justify-content: center;
   cursor: pointer;
   transition: background 0.3s;
+  border-radius: 4px; /* Added border-radius */
 }
 
 .chat-form button:hover {
-  background: #666666;
+  background: var(--loreal-gold); /* Brand color hover */
 }
 
 .chat-form button:focus {
-  outline: 2px solid #000;
+  outline: 2px solid var(--border-dark);
   outline-offset: 2px;
 }
 
@@ -153,7 +200,7 @@ body {
   margin: 60px 0 40px;
   text-align: center;
   font-size: 14px;
-  color: #666;
+  color: var(--text-light);
 }
 
 .site-footer nav {
@@ -162,12 +209,12 @@ body {
 
 .site-footer a {
   margin: 0 8px;
-  color: #000;
+  color: var(--border-dark);
   text-decoration: none;
 }
 
 .site-footer a:hover {
-  color: #666666;
+  color: var(--loreal-red); /* Brand color */
 }
 
 /* products grid */
@@ -180,12 +227,25 @@ body {
 
 .product-card {
   flex: 0 1 calc(33.333% - 14px);
-  border: 1px solid #ccc;
+  border: 2px solid var(--border-color); /* Thicker border */
   padding: 15px;
-  border-radius: 4px;
+  border-radius: 8px; /* Rounded corners */
+  display: flex;
+  flex-direction: column; /* Changed to column */
+  min-height: 160px;
+  background: var(--bg-white);
+  cursor: pointer;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.product-card:hover {
+  border-color: var(--loreal-gold); /* Brand color */
+}
+
+.product-card-content {
   display: flex;
   gap: 15px;
-  min-height: 160px;
+  align-items: center;
 }
 
 .product-card img {
@@ -210,15 +270,16 @@ body {
 
 .product-card p {
   font-size: 14px;
-  color: #666;
+  color: var(--text-light);
 }
 
 /* selected products */
 .selected-products {
   margin: 40px 0;
   padding: 20px;
-  border: 2px solid #000;
+  border: 2px solid var(--border-dark);
   border-radius: 8px;
+  background: var(--bg-white);
 }
 
 .selected-products h2 {
@@ -230,6 +291,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  min-height: 20px; /* Ensure it has height even when empty */
 }
 
 .generate-btn {
@@ -238,8 +300,8 @@ body {
   padding: 16px;
   font-size: 18px;
   font-weight: 500;
-  color: #fff;
-  background: #000;
+  color: var(--bg-white);
+  background: var(--loreal-red); /* Brand color */
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -247,9 +309,158 @@ body {
 }
 
 .generate-btn:hover {
-  background: #666;
+  background: var(--loreal-gold); /* Brand color hover */
+}
+
+.generate-btn:disabled {
+  background: var(--border-color);
+  cursor: not-allowed;
 }
 
 .generate-btn i {
-  margin-right: 8px;
+  margin-inline-end: 8px; /* RTL Support */
+}
+
+/*
+* 🚀 --- NEW STYLES ADDED FOR FEATURES --- 🚀
+*/
+
+/* 1. Selected Product Card State */
+.product-card.selected {
+  border-color: var(--loreal-red);
+  box-shadow: 0 0 8px rgba(255, 0, 59, 0.5);
+}
+
+/* 2. Product Description Toggle */
+.product-description {
+  display: none; /* Hidden by default */
+  font-size: 13px;
+  line-height: 1.4;
+  margin-top: 15px;
+  color: var(--text-dark);
+}
+
+.product-card.expanded .product-description {
+  display: block; /* Shown when card is expanded */
+}
+
+.toggle-desc {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--loreal-red);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px 0 0; /* Adjust padding */
+  margin-top: 10px;
+  text-align: start; /* RTL Support */
+}
+
+.toggle-desc:hover {
+  text-decoration: underline;
+}
+
+/* 3. Selected Products List Items (Chips) */
+.selected-product-item {
+  display: flex;
+  align-items: center;
+  background: var(--loreal-red);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.remove-product-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  margin-inline-start: 8px; /* RTL Support */
+  cursor: pointer;
+  line-height: 1;
+}
+
+.remove-product-btn:hover {
+  color: var(--loreal-gold);
+}
+
+/* 4. Responsive Adjustments */
+@media (max-width: 768px) {
+  .product-card {
+    flex: 0 1 calc(50% - 10px); /* 2 columns on tablet */
+  }
+}
+
+@media (max-width: 480px) {
+  .product-card {
+    flex: 0 1 100%; /* 1 column on mobile */
+  }
+
+  .product-card-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .product-card .product-info {
+    min-height: auto;
+  }
+}
+
+/*
+* 🚀 --- NEW STYLES FOR CHAT MESSAGES (RTL Supported) --- 🚀
+*/
+.chat-message {
+  max-width: 90%;
+  padding: 12px 18px;
+  border-radius: 18px;
+  margin-bottom: 12px;
+  line-height: 1.5;
+  font-size: 16px; /* Slightly smaller for chat */
+}
+
+.user-message {
+  background-color: #f0f0f0;
+  color: var(--text-dark);
+  align-self: flex-end; /* User messages on the right */
+  margin-inline-start: auto; /* Push to the right (RTL supported) */
+  border-end-end-radius: 4px; /* RTL supported */
+}
+
+.ai-message {
+  background-color: var(--loreal-red);
+  color: var(--bg-white);
+  align-self: flex-start; /* AI messages on the left */
+  border-end-start-radius: 4px; /* RTL supported */
+}
+
+/* AI message paragraphs and lists */
+.ai-message p {
+  margin-bottom: 10px;
+}
+.ai-message ul,
+.ai-message ol {
+  margin-inline-start: 20px; /* RTL supported */
+  padding-inline-start: 5px; /* RTL supported */
+  margin-bottom: 10px;
+}
+.ai-message li {
+  margin-bottom: 5px;
+}
+
+.ai-loading-message,
+.ai-error-message {
+  background-color: var(--bg-light);
+  color: var(--text-light);
+  font-style: italic;
+  align-self: flex-start;
+  border-end-start-radius: 4px;
+}
+
+.ai-error-message {
+  color: var(--loreal-red);
+  font-weight: 500;
 }
